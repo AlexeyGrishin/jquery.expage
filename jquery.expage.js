@@ -8,6 +8,13 @@
 // expage.expand
 // expage.collapse
 
+(function($) {
+  $.fn.hasScrollBar = function() {
+    return this.get(0).scrollHeight > this.height();
+  }
+})(jQuery);
+
+
 function Expage(element, options) {
 
   this.options = {
@@ -38,12 +45,12 @@ function Expage(element, options) {
     else if (this.options.expandButton === true) {
       this.options.expandButton = $("<div class='expageExpand expageHidden'><a class='btn' href='javascript:void(0);'>Expand</a></div>");
       this.objParent.css({position: "relative"});
-      this.obj.before(this.options.expandButton);
-      var onScroll = function onScroll() {
-        this.options.expandButton.css({top: this.objParent.scrollTop()})
-      }.bind(this);
-      this.objParent.scroll(onScroll);
-      onScroll();
+      if (this.objParent.hasScrollBar()) {
+        this.objParent.before(this.options.expandButton);
+      }
+      else {
+        this.obj.before(this.options.expandButton);
+      }
     }
 
     if (this.options.expandButton) {
