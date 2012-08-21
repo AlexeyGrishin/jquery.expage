@@ -12,4 +12,4 @@ Note that plugin does not switch browser into full screen mode for now. It was c
 
 ## Examples
 
-TBD
+Please download the repo and see examples.html

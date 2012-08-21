@@ -7,9 +7,10 @@
     <link href="../lib/bootstrap.min.css" type="text/css" rel="stylesheet"/>
     <style>
         .content {
-            width: 400px;
+            width: 600px;
             margin-left: auto;
             margin-right: auto;
+            padding-top: 40px;
         }
         .table-container {
             overflow: scroll;
@@ -38,13 +39,27 @@
             padding:3px;
             vertical-align:top;
         }
-    </style>
-    <script>
-        $(function() {
-            $("table.reference").expage();
+        .expageExpanded th {
+            color: blue;
+        }
+        .table-title {
+            font-weight: bold;
+            color: red;
+        }
+        .table-note {
+            position: absolute;
+            left: 50%;
+            width: 600px;
+            margin-left: -300px;
+            height: 40px;
+            color: blue;
+            border: 1px solid gray;
+            background-color: white;
+            top: 40px;
+            z-index: 20;
+        }
 
-        });
-    </script>
+    </style>
 
 </head>
 <body>
@@ -53,22 +68,43 @@
         <div class="container">
             <ul class="nav">
                 <li><a href="../examples.html">Home</a></li>
-                <li class="active"><a href="simple.html">Simple example</a></li>
-                <li><a href="css.html">Styles usage</a></li>
+                <li><a href="simple.html">Simple example</a></li>
+                <li class="active"><a href="css.html">Styles usage</a></li>
                 <li><a href="events.html">Commands/Events</a></li>
+
             </ul>
         </div>
     </div>
 </div>
+<p class="expageVisible table-note">You may change the behavior using some css classes. For example this text will not hide
+when you expand the table below.</p>
 <div class="content">
-<p>Click on 'Expand' button below. Also check this page on iPad</p>
 <pre>
-    //Make table expandable with default options
-    $("table.reference").expage();
+    HTML:
+
+    &lt;!-- expageVisible - makes element visible when other are hidden -->
+&lt;p class="<b><u>expageVisible</u></b> table-note">You may change the behavior...&lt;/p>
+
+    &lt;!-- expage - automatically applies expage plugin with default options -->
+    &lt;table class="reference <b><u>expage</u></b>"&gt;
+
+    &lt;!-- expageHidden - hides the element when content is expanded -->
+      &lt;tr class="table-title <b><u>expageHidden</u></b>"&gt;
+        &lt;td colspan="13" &gt;This text will be hidden after expand&lt;/td&gt;
+    &lt;/tr&gt;
+
+    CSS:
+    /*expageExpanded - added to the container when content is expanded*/
+    <b><u>.expageExpanded</u></b> th {
+        color: blue;
+    }
 </pre>
+
 <div class="table-container">
-<p>Some text before</p>
-<table class="reference" id="reference-table">
+<table class="reference expage" id="reference-table">
+<tr class="table-title expageHidden">
+    <td colspan="13" >This text will be hidden after expand. Also the table headers font color will became blue</td>
+</tr>
 <tr>
     <th width="12%" align="left" style="height: 21px">2012</th>
     <th width="11%" align="right" style="height: 21px">Total</th>
@@ -910,10 +946,8 @@
     <td align="right">3.1%</td>
 </tr>
 </table>
-<p>Some text after</p>
 </div>
 
-<p>Some content after table</p>
 </div>
 <p style="display:none; background-color: red">Hidden content</p>
 </body>

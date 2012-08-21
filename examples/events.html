@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>jquery.expage - Simple example</title>
+    <script src="../lib/jquery.js"></script>
+    <script src="../jquery.expage.js"></script>
+    <link href="../lib/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+    <style>
+        .content {
+            width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .table-container {
+            overflow: scroll;
+            max-height: 500px;
+        }
+
+        .floating {
+            position: absolute;
+            right: 10px;
+            top: 100px;
+            width: 200px;
+            height: 200px;
+            background-color: #cccccc;
+            border: 1px outset #888888;
+            z-index: 10;
+        }
+        .floating .btn {
+            width: 49%;
+        }
+        .events {
+            overflow-y: scroll;
+            height: 80%;
+        }
+    </style>
+    <script>
+        $(function() {
+            $("pre").expage({
+                expandButton: $(".doexpand"),
+                collapseButton: $(".docollapse"),
+                changeHash: false
+            }).on("expage.expand", function() {
+                $(".events").prepend($("<div>Expanded</div>"));
+            }).on("expage.collapse", function() {
+                $(".events").prepend($("<div>Collapsed</div>"));
+            })
+        })
+    </script>
+</head>
+<body>
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="container">
+            <ul class="nav">
+                <li><a href="../examples.html">Home</a></li>
+                <li><a href="simple.html">Simple example</a></li>
+                <li><a href="css.html">Styles usage</a></li>
+                <li class="active"><a href="events.html">Commands/Events</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="floating expageVisible">
+    <button class="doexpand btn">Expand</button>
+    <button class="docollapse btn">Collapse</button>
+    <div class="events">
+
+    </div>
+</div>
+<div class="content">
+    <p>This example does not use standard expand/collapse buttons, instead there are custom buttons which call Expage commands.
+        Also it listens to events</p>
+
+
+    <div class="table-container">
+<pre>
+        $(function() {
+            $("pre").expage({
+                expandButton: $(".doexpand"),
+                collapseButton: $(".docollapse"),
+                changeHash: false
+            }).on("expage.expand", function() {
+                $(".events").prepend($("&lt;div>Expanded&lt;/div>"));
+            }).on("expage.collapse", function() {
+                $(".events").prepend($("&lt;div>Collapsed&lt;/div>"));
+            })
+        })
+</pre>
+    </div>
+
+
+</div>
+
+</body>
+</html>
